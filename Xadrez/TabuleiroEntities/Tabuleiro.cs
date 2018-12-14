@@ -22,10 +22,38 @@ namespace Xadrez.TabuleiroEntities
             return Pecas[linha, coluna];
         }
 
+        public Peca GetPeca(Posicao posicao)
+        {
+            return Pecas[posicao.Linha, posicao.Coluna];
+        }
+
+        public bool ExistePeca(Posicao posicao)
+        {
+            ValidarPosicao(posicao);
+            return GetPeca(posicao) != null;
+        }
+
         public void ColocarPeca(Peca peca, Posicao posicao)
         {
+            if (ExistePeca(posicao))
+            {
+                throw new TabuleiroException("Já existe uma peça nessa posição!");
+            }
             Pecas[posicao.Linha, posicao.Coluna] = peca;
             peca.Posicao = posicao;
+        }
+
+        public bool PosicaoEValida(Posicao posicao)
+        {
+            return (posicao.Linha < 0 || posicao.Linha >= NumLinhas || posicao.Coluna < 0 || posicao.Coluna >= NumColunas) ? false : true;
+        }
+
+        public void ValidarPosicao(Posicao posicao)
+        {
+            if (!PosicaoEValida(posicao))
+            {
+                throw new TabuleiroException("Posição inválida!");
+            }
         }
     }
 }
