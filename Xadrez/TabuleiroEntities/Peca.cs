@@ -5,16 +5,16 @@ using Xadrez.TabuleiroEntities.Enums;
 
 namespace Xadrez.TabuleiroEntities
 {
-    class Peca
+    abstract class Peca
     {
         public Posicao Posicao { get; set; }
         public Cor Cor { get; protected set; }
         public int QtdeMovimentos { get; protected set; }
         public Tabuleiro Tabuleiro { get; protected set; }
 
-        public Peca(Posicao posicao, Tabuleiro tabuleiro, Cor cor)
+        public Peca(Tabuleiro tabuleiro, Cor cor)
         {
-            Posicao = posicao;
+            Posicao = null;
             Tabuleiro = tabuleiro;
             Cor = cor;
             QtdeMovimentos = 0;
