@@ -19,5 +19,10 @@ namespace Xadrez.TabuleiroEntities
             Cor = cor;
             QtdeMovimentos = 0;
         }
+
+        public void IncrementarQtdeMovimento()
+        {
+            QtdeMovimentos++;
+        }
     }
 }
