@@ -27,6 +27,11 @@ namespace Xadrez.TabuleiroEntities
             QtdeMovimentos++;
         }
 
+        public void DecrementarQtdeMovimentos()
+        {
+            QtdeMovimentos--;
+        }
+
         public bool ExisteMovimentosPossiveis()
         {
             bool[,] matriz = MovimentosPossiveis();
