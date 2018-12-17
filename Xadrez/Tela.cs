@@ -26,17 +26,33 @@ namespace Xadrez
             Console.Write("\nTurno: ");
             Console.ForegroundColor = corTextoPadrao;
             Console.WriteLine(partida.Turno);
-            Console.ForegroundColor = corInformacoes;
-            Console.Write("Aguardando jogada: ");
-            Console.ForegroundColor = corTextoPadrao;
-            if (partida.JogadorAtual == Cor.Preta) Console.ForegroundColor = corPecasPretas;
-            else Console.ForegroundColor = corTextoPadrao;
-            Console.WriteLine(partida.JogadorAtual);
-            Console.ForegroundColor = corTextoPadrao;
 
-            if (partida.Xeque)
+            if (!partida.Terminada)
             {
-                Console.WriteLine("Xeque!");
+                Console.ForegroundColor = corInformacoes;
+                Console.Write("Aguardando jogada: ");
+                Console.ForegroundColor = corTextoPadrao;
+                if (partida.JogadorAtual == Cor.Preta) Console.ForegroundColor = corPecasPretas;
+                else Console.ForegroundColor = corTextoPadrao;
+                Console.WriteLine(partida.JogadorAtual);
+                Console.ForegroundColor = corTextoPadrao;
+
+                if (partida.Xeque)
+                {
+                    Console.ForegroundColor = corTextoDestaque;
+                    Console.WriteLine("\nXEQUE!!");
+                    Console.ForegroundColor = corTextoPadrao;
+                }
+            } else
+            {
+                Console.ForegroundColor = corTextoDestaque;
+                Console.WriteLine("\nXEQUE-MATE!!");
+                Console.ForegroundColor = corInformacoes;
+                Console.Write("Vencedor: ");
+                Console.ForegroundColor = (partida.JogadorAtual == Cor.Preta) ? corPecasPretas : corTextoPadrao;
+                Console.WriteLine(partida.JogadorAtual);
+                Console.ForegroundColor = corTextoPadrao;
+                Console.ReadLine();
             }
         }
 
