@@ -26,5 +26,23 @@ namespace Xadrez.TabuleiroEntities
         {
             QtdeMovimentos++;
         }
+
+        public bool ExisteMovimentosPossiveis()
+        {
+            bool[,] matriz = MovimentosPossiveis();
+            for (int i = 0; i < Tabuleiro.NumLinhas; i++)
+            {
+                for (int j = 0; j < Tabuleiro.NumColunas; j++)
+                {
+                    if (matriz[i, j]) return true;
+                }
+            }
+            return false;
+        }
+
+        public bool PodeMoverPara(Posicao pos)
+        {
+            return MovimentosPossiveis()[pos.Linha, pos.Coluna];
+        }
     }
 }
