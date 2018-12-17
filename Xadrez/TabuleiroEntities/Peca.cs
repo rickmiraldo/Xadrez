@@ -20,6 +20,12 @@ namespace Xadrez.TabuleiroEntities
             QtdeMovimentos = 0;
         }
 
+        protected bool PodeMover(Posicao posicao)
+        {
+            Peca peca = Tabuleiro.GetPeca(posicao);
+            return peca == null || peca.Cor != Cor;
+        }
+
         public abstract bool[,] MovimentosPossiveis();
 
         public void IncrementarQtdeMovimento()
@@ -45,7 +51,7 @@ namespace Xadrez.TabuleiroEntities
             return false;
         }
 
-        public bool PodeMoverPara(Posicao pos)
+        public bool MovimentoPossivel(Posicao pos)
         {
             return MovimentosPossiveis()[pos.Linha, pos.Coluna];
         }
