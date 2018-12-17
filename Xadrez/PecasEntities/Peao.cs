@@ -42,17 +42,17 @@ namespace Xadrez.PecasEntities
                     matriz[pos.Linha, pos.Coluna] = true;
                 }
                 pos.DefinirValores(Posicao.Linha - 2, Posicao.Coluna);
-                if (Tabuleiro.PosicaoEValida(pos) && livre(pos) && QtdeMovimentos == 0)
+                if (Tabuleiro.PosicaoEValida(pos) && livre(pos) && QtdeMovimentos == 0 && !existeInimigo(new Posicao(Posicao.Linha - 1, Posicao.Coluna)))
                 {
                     matriz[pos.Linha, pos.Coluna] = true;
                 }
                 pos.DefinirValores(Posicao.Linha - 1, Posicao.Coluna - 1);
-                if (Tabuleiro.PosicaoEValida(pos) && livre(pos) && existeInimigo(pos))
+                if (Tabuleiro.PosicaoEValida(pos) && existeInimigo(pos))
                 {
                     matriz[pos.Linha, pos.Coluna] = true;
                 }
                 pos.DefinirValores(Posicao.Linha - 1, Posicao.Coluna + 1);
-                if (Tabuleiro.PosicaoEValida(pos) && livre(pos) && existeInimigo(pos))
+                if (Tabuleiro.PosicaoEValida(pos) && existeInimigo(pos))
                 {
                     matriz[pos.Linha, pos.Coluna] = true;
                 }
@@ -63,17 +63,17 @@ namespace Xadrez.PecasEntities
                     matriz[pos.Linha, pos.Coluna] = true;
                 }
                 pos.DefinirValores(Posicao.Linha + 2, Posicao.Coluna);
-                if (Tabuleiro.PosicaoEValida(pos) && livre(pos) && QtdeMovimentos == 0)
+                if (Tabuleiro.PosicaoEValida(pos) && livre(pos) && QtdeMovimentos == 0 && !existeInimigo(new Posicao(Posicao.Linha + 1, Posicao.Coluna)))
                 {
                     matriz[pos.Linha, pos.Coluna] = true;
                 }
                 pos.DefinirValores(Posicao.Linha + 1, Posicao.Coluna - 1);
-                if (Tabuleiro.PosicaoEValida(pos) && livre(pos) && existeInimigo(pos))
+                if (Tabuleiro.PosicaoEValida(pos) && existeInimigo(pos))
                 {
                     matriz[pos.Linha, pos.Coluna] = true;
                 }
                 pos.DefinirValores(Posicao.Linha + 1, Posicao.Coluna + 1);
-                if (Tabuleiro.PosicaoEValida(pos) && livre(pos) && existeInimigo(pos))
+                if (Tabuleiro.PosicaoEValida(pos) && existeInimigo(pos))
                 {
                     matriz[pos.Linha, pos.Coluna] = true;
                 }
