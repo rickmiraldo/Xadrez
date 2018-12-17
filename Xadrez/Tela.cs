@@ -9,26 +9,62 @@ namespace Xadrez
 {
     class Tela
     {
+        // Cores
+        private static ConsoleColor corLegendaTabuleiro = ConsoleColor.Cyan;
+        private static ConsoleColor corFundoPadrao = ConsoleColor.Black;
+        private static ConsoleColor corTextoPadrao = ConsoleColor.White;
+        private static ConsoleColor corPecasPretas = ConsoleColor.Yellow;
+        private static ConsoleColor corFundoAlterado = ConsoleColor.DarkGray;
+
         public static void ImprimirTabuleiro(Tabuleiro tabuleiro)
         {
-            Console.ForegroundColor = ConsoleColor.White;
+            Console.BackgroundColor = corFundoPadrao;
+            Console.ForegroundColor = corTextoPadrao;
             for (int i = 0; i < tabuleiro.NumLinhas; i++)
             {
+                Console.ForegroundColor = corLegendaTabuleiro;
                 Console.Write(8 - i + " ");
+                Console.ForegroundColor = corTextoPadrao;
                 for (int j = 0; j < tabuleiro.NumColunas; j++)
                 {
-                    if (tabuleiro.GetPeca(i,j) == null)
-                    {
-                        Console.Write("- ");
-                    } else
-                    {
-                        ImprimirPeca(tabuleiro.GetPeca(i, j));
-                        Console.Write(" ");
-                    }
+                    ImprimirPeca(tabuleiro.GetPeca(i, j));
                 }
                 Console.WriteLine();
             }
-            Console.WriteLine("  A B C D E F G H");
+            Console.ForegroundColor = corLegendaTabuleiro;
+            Console.WriteLine("  a b c d e f g h\n");
+            Console.ForegroundColor = corTextoPadrao;
+        }
+
+        public static void ImprimirTabuleiro(Tabuleiro tabuleiro, bool[,] posicoesPossiveis)
+        {
+            Console.BackgroundColor = corFundoPadrao;
+            Console.ForegroundColor = corTextoPadrao;
+
+            for (int i = 0; i < tabuleiro.NumLinhas; i++)
+            {
+                Console.ForegroundColor = corLegendaTabuleiro;
+                Console.Write(8 - i + " ");
+                Console.ForegroundColor = corTextoPadrao;
+                for (int j = 0; j < tabuleiro.NumColunas; j++)
+                {
+                    if (posicoesPossiveis[i, j])
+                    {
+                        Console.BackgroundColor = corFundoAlterado;
+                        ;
+                    } else
+                    {
+                        Console.BackgroundColor = corFundoPadrao;
+                    }
+                    ImprimirPeca(tabuleiro.GetPeca(i, j));
+                    Console.BackgroundColor = corFundoPadrao;
+                }
+                Console.WriteLine();
+            }
+            Console.ForegroundColor = corLegendaTabuleiro;
+            Console.WriteLine("  a b c d e f g h\n");
+            Console.ForegroundColor = corTextoPadrao;
+            Console.BackgroundColor = corFundoPadrao;
         }
 
         public static PosicaoXadrez LerPosicaoXadrez()
@@ -41,14 +77,23 @@ namespace Xadrez
 
         public static void ImprimirPeca(Peca peca)
         {
-            if (peca.Cor == Cor.Branca)
+            if (peca == null)
             {
-                Console.Write(peca);
-            } else
+                Console.Write("- ");
+            }
+            else
             {
-                Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.Write(peca);
-                Console.ForegroundColor = ConsoleColor.White;
+                if (peca.Cor == Cor.Branca)
+                {
+                    Console.Write(peca);
+                }
+                else
+                {
+                    Console.ForegroundColor = corPecasPretas;
+                    Console.Write(peca);
+                    Console.ForegroundColor = corTextoPadrao;
+                }
+                Console.Write(" ");
             }
         }
     }

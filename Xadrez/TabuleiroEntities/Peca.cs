@@ -20,6 +20,8 @@ namespace Xadrez.TabuleiroEntities
             QtdeMovimentos = 0;
         }
 
+        public abstract bool[,] MovimentosPossiveis();
+
         public void IncrementarQtdeMovimento()
         {
             QtdeMovimentos++;
